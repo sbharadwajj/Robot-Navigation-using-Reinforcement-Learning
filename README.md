@@ -11,3 +11,7 @@ This is an artificially intelligent robot which learns its own navigation patter
 + Pretrained model weights
 + Custom Marker
 + Caliberation of the quadpod
+
+## Design of the algorithm
+
+![](https://github.com/chichilicious/Robot-Navigation-using-Reinforcement-Learning/blob/master/RL%20Algorithm.jpg)
