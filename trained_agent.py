@@ -33,7 +33,7 @@ for q in range(0,10000):
     
     # Perform Action -> Get new state
     if ann_opp == prev_op:
-        print("#################STUCK#####################")
+        print("STUCK")
         choice = random.randint(0,23)
         new_s = env.step(choice)
         prev_op=choice
