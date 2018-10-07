@@ -15,7 +15,11 @@ broker="127.0.0.1"
 
 np.random.seed(7)
 rcvflag = 0
+
+#Creating the environment
 env = quadpod()
+
+#Parameters
 y = 0.90 #0.90
 eps = 0.5 #Prev Valu = 0.5
 decay_factor = 0.99
@@ -34,7 +38,7 @@ def getReward():
     print("waiting")
     while rcvflag == 0:
         pass
-    print("got it")
+    print("Receievd")
     print(mes)
     [a,b] = mes.split()
     done = int(a)
@@ -74,23 +78,23 @@ model = model_ann()
 
 
 
-state = env.reset()
+currentState = env.reset()
 #print(state)
 eps *= decay_factor
 #r_sum = 0
 done = False
 while not done:
     #print(np.array(state).shape)
-    ann_opp = np.argmax(model.predict(np.array([state]),batch_size=None))
-    #print(ann_opp)
-    new_s = env.step(ann_opp)
+    outputNeuralNet = np.argmax(model.predict(np.array([currentState]),batch_size=None))
+    #print(outputNeuralNet)
+    new_state = env.step(outputNeuralNet)
     done, r = getReward()
-    target = r + y * np.max(model.predict(np.array([new_s])))
-    target_vec = model.predict(np.array([state]))[0]
-    print(target)
-    target_vec[ann_opp] = target
-    model.fit(np.array([state]), target_vec.reshape(-1, 24), epochs=1, verbose=0)
-    state = new_s
+    target = r + y * np.max(model.predict(np.array([new_state])))
+    target_vec = model.predict(np.array([currentState]))[0]
+    #print(target)
+    target_vec[outputNeuralNet] = target
+    model.fit(np.array([currentState]), target_vec.reshape(-1, 24), epochs=1, verbose=0)
+    currentState = new_state
     print(done)
     print(r)
     time.sleep(0.03)
