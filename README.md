@@ -7,7 +7,6 @@ This is an artificially intelligent robot which learns its own navigation patter
 
 ## Repository Contents
 + Model-test file
-+ Environment file
 + Pretrained model weights
 + [Custom Marker](https://github.com/AnilBattalahalli/marker-for-RL)
 + Caliberation of the quadpod
@@ -16,3 +15,6 @@ This is an artificially intelligent robot which learns its own navigation patter
 
 ![](https://github.com/chichilicious/Robot-Navigation-using-Reinforcement-Learning/blob/master/RL%20Algorithm.jpg)
 
+##Additional Information
+
+We wrote or own environment which is not added to the contents of this repository yet.
